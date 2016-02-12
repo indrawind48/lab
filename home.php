@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistem Informasi Berbasis Web Odhea</title>
 
-    <!-- Bootstrap -->
+    <!-- Import Library -->
 	<link href="libs/bootstrap.min.css" rel="stylesheet">
 	<link href="libs/bootstrap-multiselect.css" rel="stylesheet">
 	<link href="libs/style.css" rel="stylesheet">
@@ -25,6 +25,7 @@
     
     <body class="pushmenu-push">
     <?php 
+	#import koneksi header dan sidebar
 		include ('libs/koneksi.php');
 		include ('libs/alerts.php');
 		include_once ('navbar.php'); 
@@ -40,6 +41,7 @@
             	
           
     <?php
+	#fungsi menu simple
 			error_reporting(0);
 			$pages_dir='page'; //value directory
 			if(!empty($_GET['ref'])) { //kalo ga kosong ambil link page
@@ -61,16 +63,14 @@
 	</div>
     	<!-- End Container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Import Library  -->
     <script src="libs/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="libs/bootstrap.min.js"></script>
 	<script src="libs/jquery.dataTables.min.js"></script>
     <script src="libs/dataTables.bootstrap.js"></script>	
     <script src="libs/jquery.validate.min.js"></script>
 	<script src="libs/additional-methods.min.js"></script>
 	<script src="libs/bootstrap-datetimepicker.js"></script>
-	<script src="libs/bootstrap-datetimepicker.id.js"></script>
 	<script src="libs/bootstrap-multiselect.js"></script>
 	
 	<script src="libs/highcharts.js"></script>
@@ -82,6 +82,7 @@ var $hide = jQuery.noConflict();
 $hide('option.hide').hide();
 </script>	
 <script>
+//fungsi informasi pasien (auto sum harga total dan list item)
 var $autosum = jQuery.noConflict();
 $autosum(document).ready(function() {
 $autosum("input[type=checkbox]").change(function(){
@@ -115,6 +116,7 @@ function recalculate(){
 </script>	
 	
 <script>
+//fungsi list parameter uji dan paket
 	var $show = jQuery.noConflict();
 	$show(document).ready(function(){
 $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#isi_a3,#isi_a4,#isi_a5,#isi_a6,#isi_a7,#isi_a8,#isi_a9,#isi_a10,#isi_a11,#isi_a12,#isi_a13,#isi_a14,#isi_a15").hide();
@@ -217,10 +219,10 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
 
 	});
 });
-</script>
-	
-	
-	<script type="text/javascript">
+
+</script>	
+<script>
+	//fungsi cari paramater uji
 	var $ee = jQuery.noConflict();
     var config = {
       '.chosen-select'           : {},
@@ -232,11 +234,9 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
     for (var selector in config) {
       $ee(selector).chosen(config[selector]);
     }
-  </script>
-  
-	
-	<script type="text/javascript">
-	var $nocon1 = jQuery.noConflict();
+</script>	
+<!--script>
+	var $nocon1! = jQuery.noConflict();
       $nocon1(document).ready(function() {
      $nocon1('#selectlist').multiselect({
      enableCaseInsensitiveFiltering: true,
@@ -244,10 +244,9 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
 	 
      });
       });
-    </script>
-	
-	
-	<script type="text/javascript">
+</script-->	
+<script>
+//fungsi chart 
 	var $nocon = jQuery.noConflict();
 		$nocon(function () {
     $nocon('#chrtbar').highcharts({
@@ -274,9 +273,9 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
         }
     });
 });
-	</script>
-	
-	<script>
+</script>
+<script>
+//fungsi date picker
 	var $jnoc3 = jQuery.noConflict();
 			$jnoc3('.form_date').datetimepicker({
 			language:  'id',
@@ -288,8 +287,9 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
 			minView: 2,
 			forceParse: 0
 			});
-	</script>
-	<script>
+</script>
+<script>
+//fungsi sidebar
 	var $jnoc1 = jQuery.noConflict();
 	$jnoc1(document).ready(function () {
     $menuLeft = $jnoc1('.pushmenu-left');
@@ -300,16 +300,18 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
         $menuLeft.toggleClass('pushmenu-open');
         });
     });
-	</script>
+</script>
     
-    <script type="text/javascript">
+<script>
+//fungsi datatable
     var $jnoc = jQuery.noConflict();
 	$jnoc(function() {
     $jnoc('#example1').dataTable();
     });
-    </script>
+</script>
 	
 <script>
+//fungsi validasi
 var $jnoc2 = jQuery.noConflict();
 $jnoc2("#form_input").validate();
 </script>

@@ -1,6 +1,6 @@
 <div class="container">
 <div class="">
-<h3 class="text-center">Tambah Pasien</h3><br><br>
+<h3 class="text-center">Form Registrasi Pasien</h3><br><br>
 </div>
 
 <div class="row">
@@ -9,6 +9,7 @@
 	<form id="form_input" method="POST">	
 
 <?php  
+#fungsi autonumber ID Pasien
 include ('../libs/koneksi.php');
 
 $query = "SELECT max(id_pasien) as maxID FROM pasien ";
@@ -32,7 +33,11 @@ else
 $newID = $char . sprintf("%04s", $noUrut);
 } 
 //echo $newID;
+##
+?>
 
+<?php
+#fungsi insert data ke data base
 if(isset($_POST['simpan']))
 {
 
@@ -62,12 +67,13 @@ if(isset($_POST['parameter_ujis']))
 	$query=mysql_query($sql);
 	//echo $sql;
 }	
-	
+##	
 	writeMsg('save.sukses');
 	//echo "<script language=javascript>parent.location.href='home.php?ref=input_registrasi';</script>";
 	/* echo "<script>
       window.open('export/cetak_mini.php?kode=".$_POST['kode']."&id_pasien=".$_POST['id_pasien']."&nama=".$_POST['nama']."');
     </script>"; */
+#fungsi redirect ke halaman hasil uji	
 	echo "
 			<script type='text/javascript'>if (confirm('Apakah Anda Ingin Menuju Halaman Input Hasil Uji ?')) {
 			// Save it!
@@ -77,6 +83,7 @@ if(isset($_POST['parameter_ujis']))
 			parent.location.href='home.php?ref=input_registrasi'
 			}
 			</script>";  
+##
 }
 ?>
 <table width="1100" border="0">
@@ -126,12 +133,7 @@ if(isset($_POST['parameter_ujis']))
     <td><br>
 			
 </div>
-		
-		
-		
-		
-		
-	</td>
+</td>
 </tr>
 <tr>
     <td>
@@ -234,17 +236,6 @@ if(isset($_POST['parameter_ujis']))
     <div class="form-group">
   		<label class="control-label" for="nama_dokter">Dokter Pengirim</label>
   		<input type="text" class="form-control" name="nama_dokter" id="nama_dokter" tabindex="9" required>
-		<!--select name="nama_dokter" class="form-control" tabindex="9" data-placeholder="Pilih Dokter" required>
-        <option value=""></option>
-        <?php
-		//$sql=mysql_query("select * from dokter ");
-		//while($data=mysql_fetch_array($sql, MYSQL_BOTH )){
-		//echo "<option value=$data[kode]>";
-		//echo "".$data[nama_dokter]."";
-		//} 	 
-		
-		?>
-		</select-->  
 	</div>
     </td>
     <td>&nbsp;</td>
@@ -281,8 +272,7 @@ if(isset($_POST['parameter_ujis']))
          <br>
 		 <div style="padding:3px;overflow:auto;width:auto;height:250px;border:0px solid grey">
 		 <?php 
-//include ('libs/koneksi.php');
-
+#fungsi list item parameter dan paket
 		  $s=mysql_query("select kode,nama from kelompok_parameter_uji");
 		  $count_a=mysql_num_rows($s);
 		  //for ($i=1;$i <=$count_a;$i++) {
@@ -352,7 +342,8 @@ echo"<span id=a_a$o># $parameter2 -  $nama2   </span><br><br>";?>
 $o=$o+1;
   }
   echo"</div>";
-  } ?>
+  } 
+ ## ?>
 
   </div>
        </div>
@@ -385,12 +376,3 @@ $o=$o+1;
 	</div>
 </div>
 </div>
-<!--script src="../libs/jquery.min.js"></script-->
-<!-- Load Bootstrap JS -->
-<!--script src="../libs/bootstrap.min.js"></script-->
-<!-- Load jQuery Validator -->
-<!--script src="../libs/jquery.validate.min.js"></script-->
-<!--script src="../libs/additional-methods.min.js"></script-->
-<!--script>
-$("#form_input").validate();
-</script-->
