@@ -57,8 +57,8 @@ $tanggal=$_GET['tanggal'];
         <div class="container">
             <h3 class="text-center">Input Data Pemeriksaan</h3><br>
             <p class='pull-right'>
-	<?php  echo "<a href=export/cetak.php?kode=".$kode."&id_pasien=".$id_pasien."&nama=".$nama."  class=btn>Print</a>"; ?><i class='icon-print'></i></a>
-	<?php  echo "<a href=export/cetak_mini.php?kode=".$kode."&id_pasien=".$id_pasien."&nama=".$nama."  class=btn>Print Struk</a>"; ?><i class='icon-print'></i></a>
+	<a href="export/cetak_mini.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-warning" style="float:right;" title="Print Struk"><span class="glyphicon glyphicon-print"></span> Print Struk</a>
+	<a href="export/cetak.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-primary" style="float:right;" title="Print Hasil"><span class="glyphicon glyphicon-print"></span> Print Hasil</a>
 </p>
          <div class="col-md-2" >#Tanggal : <?php echo $tanggal; ?></div>
 		 <div class="col-md-3" >#No Reg Pasien : <?php echo $kode; ?></div>
