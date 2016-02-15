@@ -1,86 +1,62 @@
-<html>
-    <head>
-        <title>judul</title>
-        <link rel="stylesheet" href="../libs/bootstrap.min.css">	
-        <!--link rel="stylesheet" href="../libs/dataTables.bootstrap.css"-->
-    </head>
 <?php 
-include ('../libs/koneksi.php');
-
+#catch data dr halaman sebelumnya menggunakan GET
 $kode=$_GET['kode'];
 $nama=$_GET['nama'];
 $id_pasien=$_GET['id_pasien'];
 $tanggal=$_GET['tanggal'];
-					
+##
+	
+#index data dr database
 	$sql="select b.sub_kode,b.nama_parameter,b.satuan,b.metode,b.batas_normal,a.hasil from pemeriksaan a left join parameter_uji b on (a.parameter)=b.sub_kode where a.kode='". $kode ."'";
 	$query=mysql_query($sql); 
-	
+##
 	if(isset($_POST['simpan'])) {
-	
+#insert/update data hasil pemeriksaan
 	$sql=mysql_query("select parameter from pemeriksaan where kode='".$kode."'");
-
 	$count=mysql_num_rows($sql);
 	for($i=0;$i<$count;$i++){
-		
-		
 	$sql="update pemeriksaan set hasil='".$_POST['hasil'][$i]."', gambar = '".$_POST['gambar'][$i]."' where parameter='".$_POST['sub_kode'][$i]."' and kode='".$kode."'";
 	$query=mysql_query($sql);
-	//echo $sql; 	
 	}
+##
+
+#insert/update data detail pemeriksaan (kesimpulan,catatan,saran)
 	$sql="DELETE FROM pemeriksaan_detail WHERE kode='".$kode."'";
 	$query=mysql_query($sql);
-	
 	$sql="insert into pemeriksaan_detail (tanggal,kode,kesimpulan,catatan,saran) values ('".$tanggal."','".$kode."','".$_POST['kesimpulan']."','".$_POST['catatan']."','".$_POST['saran']."')";
 	$query=mysql_query($sql);
-	
-	$sql="UPDATE kunjungan SET `load`='N' WHERE kode='".$kode."'";
-	$query=mysql_query($sql);
-	
-	
-	
-	////////
-	
-	$sql3="SELECT parameter FROM pemeriksaan WHERE tag='N' AND kode='".$kode."'";
+##
+
+#fungsi otomatis mengurangi stock reagen yg terpakai saat pemeriksaan utk parameter yg telah terdaftar di table reagen_parameter
+	$sql3="SELECT parameter FROM pemeriksaan WHERE tag='N' AND kode='".$kode."'"; #untuk mendapatkan parameter
 	$query3=mysql_query($sql3);
 	while ($row=mysql_fetch_assoc($query3)) {
 	$parameter=$row['parameter'];
-	
-	$sql4="SELECT a.kode_reagen,b.nama_reagen,a.kode_parameter,b.stock FROM reagen_parameter a LEFT JOIN reagen b ON (a.kode_reagen)=b.kode_reagen WHERE a.kode_parameter='".$parameter."'";
+	$sql4="SELECT a.kode_reagen,b.nama_reagen,a.kode_parameter,b.stock FROM reagen_parameter a LEFT JOIN reagen b ON (a.kode_reagen)=b.kode_reagen WHERE a.kode_parameter='".$parameter."'"; #untuk mendapatkan kode reagen dan stock yg tersisa d sistem
 	$query4=mysql_query($sql4);
 	while ($row2=mysql_fetch_array($query4)) {
 	$reagen=$row2['kode_reagen'];
 	$stock=$row2['stock'];
-	
 	$sql5="UPDATE reagen  SET stock=".$stock."-1 WHERE kode_reagen='".$reagen."'";
 	$query5=mysql_query($sql5);
-	//echo $sql5;
-	
 	$insert1="INSERT INTO reagen_pakai (tanggal,kode_reagen,kode_pemeriksaan,parameter) VALUES ('".$tanggal."','".$reagen."','".$kode."','".$parameter."');";
 	$que2=mysql_query($insert1);
-	}
-	//echo $sql4."<br>";
-	}
-	
+	}	}
+##
+
+#tagging data ke 'Y' bila pada kolom hasil tidak ada nilai
 	$insert="UPDATE pemeriksaan SET tag='Y' WHERE hasil!='' AND kode='".$kode."'";
 	$que=mysql_query($insert);
-	
-	
-	//echo $insert1;
+##
 	echo "<script language=javascript>parent.location.href='home.php?ref=hasil_uji';</script>";
 	writeMsg('save.sukses');
-	
 	}
-	
-	?>    
+?>    
     
     <body>
         <div class="container">
             <h3 class="text-center">Input Data Pemeriksaan</h3><br>
             <p class='pull-right'>
-	<!--a href='export/xls.php'
-	target='_blank'
-	class="btn" ><i class='icon-download-alt'></i> Excel</a-->
-	<?php  //echo "<a href=pdf/pdf.php?kode=".$kode."&id_pasien=".$id_pasien."&nama=".$nama."  class=btn>PDF</a>"; ?><i class='icon-download-alt'></i></a>
 	<?php  echo "<a href=export/cetak.php?kode=".$kode."&id_pasien=".$id_pasien."&nama=".$nama."  class=btn>Print</a>"; ?><i class='icon-print'></i></a>
 	<?php  echo "<a href=export/cetak_mini.php?kode=".$kode."&id_pasien=".$id_pasien."&nama=".$nama."  class=btn>Print Struk</a>"; ?><i class='icon-print'></i></a>
 </p>
@@ -106,7 +82,6 @@ $tanggal=$_GET['tanggal'];
   $satuan=$data['satuan'];
   $metode=$data['metode'];
   $batas_normal=$data['batas_normal'];
-  //$hasil=$data['hasil'];
   
   ?>
   			<tr>
@@ -121,11 +96,11 @@ $tanggal=$_GET['tanggal'];
   
   <?php  } ?>
 <?php 
- include ('../libs/koneksi.php');
- 
+#menampilkan data detail (kesimpulan,catatan,dan saran)
  $sql="select id,kode,kesimpulan,catatan,saran from pemeriksaan_detail WHERE kode='".$kode."'";
  $query=mysql_query($sql);
  $data2=mysql_fetch_array($query);
+##
  ?>
 </table>
 <table class="table table-bordered " width="900" >
@@ -149,14 +124,4 @@ $tanggal=$_GET['tanggal'];
 
 		</div>		
 	</form>
-        <!--script src="table/jquery-1.11.1.min.js"></script-->
-        <!--script src="table/bootstrap.min.js"></script-->
-        <!--script src="table/jquery.dataTables.min.js"></script-->
-        <!--script src="table/dataTables.bootstrap.js"></script-->	
-        <!--script type="text/javascript">
-            $(function() {
-                $('#example1').dataTable();
-            });
-        </script-->
-    </body>
-</html>
+</body>

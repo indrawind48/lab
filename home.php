@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$today = date("j-n-Y");
+$cbulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+$cnobl  = array("01","02","03","04","05","06","07","08","09","10","11","12");
+$nthm = date("Y") - 10;
+$ntha = date("Y") + 10;
+$nthini = date("Y");
+$ntgini = date("j") -1 ;
+?>
+<style>
+.form1 {
+padding:3px;height:30px;width:70px;border:1px solid grey;
+}
+</style>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,6 +91,97 @@
 	<script src="libs/data.js"></script>
 	<script src="libs/chosen.jquery.js" type="text/javascript"></script>
 
+<script>
+	var $fil = jQuery.noConflict();
+	$fil(document).ready(function() {
+	$fil("#periode").change(function(){
+ 
+	dropdown = $fil('#periode').val();
+
+        
+        if (dropdown == 'harian')
+        {
+          $fil(document.getElementById('m2')).remove();
+          $fil(document.getElementById('y2')).remove();
+          $fil(document.getElementById('y3')).remove();
+          $fil('<select id="d1" name="tgl1" class="form1"><?php 
+				for ($ntg = 1; $ntg<=31;$ntg++) {
+				if ($ntg == date("j") ) {
+					echo "<option value= $ntg selected>$ntg";
+				} else{
+					echo "<option value= $ntg>$ntg";
+				}
+			} ?></select> <select id="m1" name="bln1" class="form1"><?php
+				for ($nbl = 0; $nbl<=11;$nbl++) {
+				if ($nbl == date("n") - 1) {
+				echo "<option value= $nbl selected> $cbulan[$nbl]";
+				} else {
+				echo "<option value= $nbl> $cbulan[$nbl]";
+				}
+			} ?></select> <select id="y1" name="thn1" class="form1"><?php
+				for ($nth = $nthm; $nth<=$ntha;$nth++) {
+				if ($nth == date("Y")) {
+				echo "<option value= $nth selected> $nth";
+				} else {
+				echo "<option value= $nth> $nth";
+				}
+			}?></select>').appendTo('#output');
+        
+        }
+        else if (dropdown == 'bulanan') 
+        {
+          $fil(document.getElementById('d1')).remove();
+          $fil(document.getElementById('m1')).remove();
+          $fil(document.getElementById('y1')).remove();
+          $fil(document.getElementById('y3')).remove();
+           $fil('<select id="m2" name="bln2" class="form1"><?php
+				for ($nbl = 0; $nbl<=11;$nbl++) {
+				if ($nbl == date("n") - 1) {
+				echo "<option value= $nbl selected> $cbulan[$nbl]";
+				} else {
+				echo "<option value= $nbl> $cbulan[$nbl]";
+				}
+			} ?></select> <select id="y2" name="thn2" class="form1"><?php
+				for ($nth = $nthm; $nth<=$ntha;$nth++) {
+				if ($nth == date("Y")) {
+				echo "<option value= $nth selected> $nth";
+				} else {
+				echo "<option value= $nth> $nth";
+				}
+			}?></select>').appendTo('#output');
+        }
+        else if (dropdown == 'tahunan') 
+        {
+          $fil(document.getElementById('d1')).remove();
+          $fil(document.getElementById('m1')).remove();
+          $fil(document.getElementById('y1')).remove();
+          $fil(document.getElementById('m2')).remove();
+          $fil(document.getElementById('y2')).remove();
+           $fil('<select id="y3" name="thn3" class="form1"><?php
+				for ($nth = $nthm; $nth<=$ntha;$nth++) {
+				if ($nth == date("Y")) {
+				echo "<option value= $nth selected> $nth";
+				} else {
+				echo "<option value= $nth> $nth";
+				}
+			}?></select>').appendTo('#output');
+        }
+        else if (dropdown == 'semua') 
+        {
+          $fil(document.getElementById('d1')).remove();
+          $fil(document.getElementById('m1')).remove();
+          $fil(document.getElementById('y1')).remove();
+          $fil(document.getElementById('m2')).remove();
+          $fil(document.getElementById('y2')).remove();
+          $fil(document.getElementById('y3')).remove();
+
+        }
+        
+
+		});
+	});
+</script>	
+	
 <script>
 var $hide = jQuery.noConflict();
 $hide('option.hide').hide();
