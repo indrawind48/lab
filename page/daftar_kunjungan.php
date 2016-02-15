@@ -1,45 +1,93 @@
-<html>
-    <head>
-        <title>judul</title>
-        <!--link rel="stylesheet" href="../libs/bootstrap.min.css"-->	
-        <!--link rel="stylesheet" href="../libs/dataTables.bootstrap.css"-->
-    </head>
-<?php 
-					
+<?php 					
+#index data dr database	
+	$sql="select a.id,a.tanggal,a.kode,a.nama_pengunjung,a.alamat_pengunjung,b.jenis,a.dokter_pengirim from kunjungan_pasien a left join jenis_pasien b on (a.jenis_pengunjung)=b.kode where a.tanggal='".date('Y-m-d')."'";
+	$query=mysql_query($sql); 
+	$cek="Hari Ini";
+##
+
+#filtering data sesuai keinginan berdasarkan hari,bulan,tahun,dan semua data 
+if(isset($_POST['tgl1']) AND ($_POST['periode']=="harian"))
+{
+	$tgl    = $_POST['tgl1'];
+	$bln    = $cnobl[$_POST['bln1']];
+	$blnc   = $cbulan[$_POST['bln1']];
+	$thn    = $_POST['thn1']; 
+
+	if($tgl<=9){
+		$tg="0".$tgl;
+		}else{
+		$tg=$tgl;
+		}		
+	$sql="select a.id,a.tanggal,a.kode,a.nama_pengunjung,a.alamat_pengunjung,b.jenis,a.dokter_pengirim from kunjungan_pasien a left join jenis_pasien b on (a.jenis_pengunjung)=b.kode WHERE a.tanggal LIKE '".$thn."-".$bln."-".$tg."%"."'";
+	$query=mysql_query($sql); 
+	$cek=$tg." ".$blnc." ".$thn;
+	
+} elseif(isset ($_POST['bln2']) AND ($_POST['periode']=="bulanan")) 
+{
+	
+	$bln    = $cnobl[$_POST['bln2']];
+	$blnc   = $cbulan[$_POST['bln2']];
+	$thn    = $_POST['thn2']; 
+	
+	$sql="select a.id,a.tanggal,a.kode,a.nama_pengunjung,a.alamat_pengunjung,b.jenis,a.dokter_pengirim from kunjungan_pasien a left join jenis_pasien b on (a.jenis_pengunjung)=b.kode WHERE MONTH(a.tanggal)='".$bln."' AND YEAR(a.tanggal)='".$thn."'";
+	$query=mysql_query($sql);
+	$cek=$blnc." ".$thn;	
+		
+} elseif (isset ($_POST['thn3']) AND ($_POST['periode']=="tahunan")) 
+{
+	$thn    = $_POST['thn3']; 
+	
+	$sql="select a.id,a.tanggal,a.kode,a.nama_pengunjung,a.alamat_pengunjung,b.jenis,a.dokter_pengirim from kunjungan_pasien a left join jenis_pasien b on (a.jenis_pengunjung)=b.kode WHERE  YEAR(a.tanggal)='".$thn."'";
+	$query=mysql_query($sql); 
+	$cek=$thn;
+} elseif ($_POST['periode']=="semua")
+{
 	$sql="select a.id,a.tanggal,a.kode,a.nama_pengunjung,a.alamat_pengunjung,b.jenis,a.dokter_pengirim from kunjungan_pasien a left join jenis_pasien b on (a.jenis_pengunjung)=b.kode";
-	$query=mysql_query($sql); ?>    
-    
+	$query=mysql_query($sql);
+	$cek="Semua Data";
+}
+##
+?>       
     <body>
         <div class="container">
             <h3 class="text-center">Daftar Kunjungan Pasien</h3>
-			<form>
-            <table width="327" border="0">
+			<form id="form_input" method="POST">	
+			<table width="380" border="0">
             <tr>
-            <td width="111">Periode</td>
+            <td width="70">Periode</td>
             <td width="300">
-            <select name="periode" class="form-control" id="periode">
-            <option value="harian">Harian</option>
-            <option value="bulanan">Bulanan</option>
-			<option value="tahunan">Tahunan</option>
-
-            </select>
+            <select name="periode" id="periode" class="form-control" style="width:95%">
+				<option hidden >Silahkan pilih</option>
+				<option value="harian">Harian</option>
+				<option value="bulanan">Bulanan</option>
+				<option value="tahunan">Tahunan</option>
+				<option value="semua">Semua</option>
+			</select>
             </td>
+			<td></td>
+			<td>  <span class="form-group">
+                <input type="submit" value="Filter" name="filter" class="btn btn-primary">
+              </span> </td>
             </tr>
-            <tr>
-            <td>Tanggal</td>
-            <td><input type="text" class="form-control form_date " data-date-format="yyyy-mm-dd" name="tanggal" id="tanggal" required></td>
+			<tr>
+			<td >&nbsp; </td>
+			<td >&nbsp; </td>
+			</tr>
+            <tr >
+            <td ></td>
+            <td>
+			<div id="output"></div>
+			<!--input type="text" class="form-control form_date " data-date-format="yyyy-mm-dd" name="tanggal" id="tanggal" value="<?php echo date('Y-m-d'); ?>" style="width:50%"-->
+			</td>
             </tr>
-            <tr>
-              <td height="41">&nbsp;</td>
-              <td><span class="form-group">
-                <input type="submit" value="FILTER" name="filter" class="btn btn-primary">
-              </span></td>
-            </tr>
-            </table> 
-			</form method="post">
+            
+            </table>
+			</form>
+			<br><br>
+			<div >Periode Data : <strong><?php echo $cek ?></strong></div>
             <div class="form-group"></div>
-			<a href="home.php?ref=input_registrasi" class="btn btn-default btn-sm btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Add New</a>
-<br><br><br>
+			<!--a href="home.php?ref=input_registrasi" class="btn btn-default btn-sm btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Add New</a-->
+<br>
             <div class="box-body table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>

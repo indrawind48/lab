@@ -5,6 +5,11 @@ $nama=$_GET['nama'];
 $id_pasien=$_GET['id_pasien'];
 $tanggal=$_GET['tanggal'];
 ##
+
+#ambil data pasien dr database
+$que=mysql_query("select nama from pasien where kode='".$kode."'");
+$row2=mysql_fetch_assoc($que);
+##
 	
 #index data dr database
 	$sql="select b.sub_kode,b.nama_parameter,b.satuan,b.metode,b.batas_normal,a.hasil from pemeriksaan a left join parameter_uji b on (a.parameter)=b.sub_kode where a.kode='". $kode ."'";
@@ -48,7 +53,7 @@ $tanggal=$_GET['tanggal'];
 	$insert="UPDATE pemeriksaan SET tag='Y' WHERE hasil!='' AND kode='".$kode."'";
 	$que=mysql_query($insert);
 ##
-	echo "<script language=javascript>parent.location.href='home.php?ref=hasil_uji';</script>";
+	echo "<script language=javascript>parent.location.href='home.php?ref=input_hasil&kode=$kode&tanggal=$tanggal&id_pasien=$id_pasien&nama=$nama';</script>";
 	writeMsg('save.sukses');
 	}
 ?>    
@@ -57,12 +62,12 @@ $tanggal=$_GET['tanggal'];
         <div class="container">
             <h3 class="text-center">Input Data Pemeriksaan</h3><br>
             <p class='pull-right'>
-	<a href="export/cetak_mini.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-warning" style="float:right;" title="Print Struk"><span class="glyphicon glyphicon-print"></span> Print Struk</a>
-	<a href="export/cetak.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-primary" style="float:right;" title="Print Hasil"><span class="glyphicon glyphicon-print"></span> Print Hasil</a>
+	<a href="page/cetak_mini.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-warning" style="float:right;" title="Print Struk"><span class="glyphicon glyphicon-print"></span> Print Struk</a>
+	<a href="page/cetak.php?kode=<?php echo $kode."&id_pasien=".$id_pasien."&nama=".$nama ?>" class="btn btn-default btn-sm btn-primary" style="float:right;" title="Print Hasil"><span class="glyphicon glyphicon-print"></span> Print Hasil</a>
 </p>
-         <div class="col-md-2" >#Tanggal : <?php echo $tanggal; ?></div>
-		 <div class="col-md-3" >#No Reg Pasien : <?php echo $kode; ?></div>
-         <div class="col-md-3" >#Nama Pasien : <?php echo $nama; ?></div><br><br>
+         <div class="col-md-2" >#Tanggal : <strong><i><?php echo $tanggal; ?></i></strong></div>
+		 <div class="col-md-3" >#No Reg Pasien : <strong><i><?php echo $kode; ?></i></strong></div>
+         <div class="col-md-3" >#Nama Pasien : <strong><i><?php echo $row2['nama']; ?></i></strong></div><br><br>
     <form method="POST">     
          <table class="table table-bordered " width="900" >
          

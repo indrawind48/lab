@@ -175,6 +175,8 @@ $total +=$rows -> biaya;
 		function print_d(){
 			window.print();
 		}
+		//document.location.href = 'www.google.com';
+
 	</script>
 	</body>
-</html>
+</htmls>
