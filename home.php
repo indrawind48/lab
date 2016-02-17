@@ -92,6 +92,23 @@ padding:3px;height:30px;width:70px;border:1px solid grey;
 	<script src="libs/chosen.jquery.js" type="text/javascript"></script>
 
 <script>
+var $pars = jQuery.noConflict();
+$pars('#modal_edit').on('show.bs.modal', function(parsh) {
+    var nama = $pars(parsh.relatedTarget).data('nama');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="nama"]').val(nama);
+});
+
+$pars('#modal_delete').on('show.bs.modal', function(parsh) {
+    var nama = $pars(parsh.relatedTarget).data('nama');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('div[name="nama"]').innerHTML = 5;
+	document.getElementById("hapus_id").innerHTML = nama;
+});
+</script>	
+<script>
 	var $fil = jQuery.noConflict();
 	$fil(document).ready(function() {
 	$fil("#periode").change(function(){
