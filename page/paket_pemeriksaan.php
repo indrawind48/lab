@@ -101,7 +101,7 @@ $nama_parameter=$row['nama_parameter'];
 							<td><?php echo "  Rp ".number_format($biaya,0,'.','.') ?></td>
 							<td align="center">
 									<button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_paket_pemeriksaan" data-id="<?php echo $id ?>" data-kode="<?php echo $kode ?>" data-nama_paket="<?php echo $nama_paket ?>" data-biaya="<?php echo $biaya ?>"><span class="glyphicon glyphicon-pencil"></span></button>
-									<button type="button" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_paket_pemeriksaan" data-id="<?php echo $id ?>" data-nama_paket="<?php echo $nama_paket ?>"><span class="glyphicon glyphicon-remove"></span></button>
+									<button type="button" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_paket_pemeriksaan" data-id="<?php echo $id ?>" data-nama_paket="<?php echo $nama_paket ?>" data-kode="<?php echo $kode ?>"><span class="glyphicon glyphicon-remove"></span></button>
 							</td>
                         </tr>
 	<?php $no++; } ?>                                                

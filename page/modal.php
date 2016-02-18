@@ -315,7 +315,7 @@
 			</div>
 			<div class="form-group" >
 			<label class="control-label" for="pilih">Parameter Uji</label><br>
-			<?php $qs1="<div id=qs1>--</div>"; echo $qs1; ?>
+			<?php //$qs1="<div id=qs1>--</div>"; echo $qs1; ?>
 			<select name="parameter_ujis[]" data-placeholder="Pilih Parameter Uji" style="width:70%;" class="form-control chosen-select " multiple tabindex="1" required>
 			<?php
 			$a=mysql_query("SELECT parameter,nama_parameter FROM paket_nama where kode='".$_POST['kode']."'");

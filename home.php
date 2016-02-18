@@ -144,7 +144,7 @@ $pars('#modal_edit_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
 	$pars(parsh.currentTarget).find('input[name="kode"]').val(kode);
 	$pars(parsh.currentTarget).find('input[name="nama_paket"]').val(nama_paket);
 	$pars(parsh.currentTarget).find('input[name="biaya"]').val(biaya);
-	document.getElementById("qs1").innerHTML = kode;
+	//document.getElementById("qs1").innerHTML = kode;
 });
 $pars('#modal_delete_paket_pemeriksaan').on('show.bs.modal', function(parsh) {
     var nama_paket = $pars(parsh.relatedTarget).data('nama_paket');
