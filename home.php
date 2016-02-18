@@ -42,6 +42,7 @@ padding:3px;height:30px;width:70px;border:1px solid grey;
 	#import koneksi header dan sidebar
 		include ('libs/koneksi.php');
 		include ('libs/alerts.php');
+		include ('page/modal.php');
 		include_once ('navbar.php'); 
      	include_once ('header.php'); 
      	//include_once ('body.php'); 
@@ -93,19 +94,63 @@ padding:3px;height:30px;width:70px;border:1px solid grey;
 
 <script>
 var $pars = jQuery.noConflict();
-$pars('#modal_edit').on('show.bs.modal', function(parsh) {
+$pars('#modal_edit_kelompok_parameter_uji').on('show.bs.modal', function(parsh) {
     var nama = $pars(parsh.relatedTarget).data('nama');
 	var id = $pars(parsh.relatedTarget).data('id');
     $pars(parsh.currentTarget).find('input[name="id"]').val(id);
 	$pars(parsh.currentTarget).find('input[name="nama"]').val(nama);
 });
-
-$pars('#modal_delete').on('show.bs.modal', function(parsh) {
+$pars('#modal_delete_kelompok_parameter_uji').on('show.bs.modal', function(parsh) {
     var nama = $pars(parsh.relatedTarget).data('nama');
 	var id = $pars(parsh.relatedTarget).data('id');
     $pars(parsh.currentTarget).find('input[name="id"]').val(id);
-	$pars(parsh.currentTarget).find('div[name="nama"]').innerHTML = 5;
 	document.getElementById("hapus_id").innerHTML = nama;
+});
+
+$pars('#modal_edit_parameter_uji').on('show.bs.modal', function(parsh) {
+	var id = $pars(parsh.relatedTarget).data('id');
+	var sub_kode = $pars(parsh.relatedTarget).data('sub_kode');
+	var nama_parameter = $pars(parsh.relatedTarget).data('nama_parameter');
+	var satuan = $pars(parsh.relatedTarget).data('satuan');
+	var metode = $pars(parsh.relatedTarget).data('metode');
+	var batas_normal = $pars(parsh.relatedTarget).data('batas_normal');
+	var biaya = $pars(parsh.relatedTarget).data('biaya');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="sub_kode"]').val(sub_kode);
+	$pars(parsh.currentTarget).find('input[name="nama_parameter"]').val(nama_parameter);
+	$pars(parsh.currentTarget).find('input[name="satuan"]').val(satuan);
+	$pars(parsh.currentTarget).find('input[name="metode"]').val(metode);
+	$pars(parsh.currentTarget).find('input[name="batas_normal"]').val(batas_normal);
+	$pars(parsh.currentTarget).find('input[name="biaya"]').val(biaya);
+});
+//ganti hapus dr id ke class
+$pars('#modal_delete_parameter_uji').on('show.bs.modal', function(parsh) {
+    var nama = $pars(parsh.relatedTarget).data('nama');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id1").innerHTML = nama;
+});
+//pake shown bukan show
+$pars('#modal_add_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
+	 $pars('.chosen-select', this).chosen();
+});
+$pars('#modal_edit_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
+	$pars('.chosen-select', this).chosen();
+	var id = $pars(parsh.relatedTarget).data('id');
+	var kode = $pars(parsh.relatedTarget).data('kode');
+	var nama_paket = $pars(parsh.relatedTarget).data('nama_paket');
+	var biaya = $pars(parsh.relatedTarget).data('biaya');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="kode"]').val(kode);
+	$pars(parsh.currentTarget).find('input[name="nama_paket"]').val(nama_paket);
+	$pars(parsh.currentTarget).find('input[name="biaya"]').val(biaya);
+	document.getElementById("qs1").innerHTML = kode;
+});
+$pars('#modal_delete_paket_pemeriksaan').on('show.bs.modal', function(parsh) {
+    var nama_paket = $pars(parsh.relatedTarget).data('nama_paket');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id2").innerHTML = nama_paket;
 });
 </script>	
 <script>
@@ -343,29 +388,19 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
 });
 
 </script>	
-<script>
-	//fungsi cari paramater uji
+<!--script>
+	//fungsi panggil cari paramater uji
 	var $ee = jQuery.noConflict();
     var config = {
       '.chosen-select'           : {},
       '.chosen-select-deselect'  : {allow_single_deselect:true},
       '.chosen-select-no-single' : {disable_search_threshold:10},
       '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-      '.chosen-select-width'     : {width:"95%"}
+      '.chosen-select-width'     : {width:"15%"}
     }
     for (var selector in config) {
       $ee(selector).chosen(config[selector]);
     }
-</script>	
-<!--script>
-	var $nocon1! = jQuery.noConflict();
-      $nocon1(document).ready(function() {
-     $nocon1('#selectlist').multiselect({
-     enableCaseInsensitiveFiltering: true,
-	 maxHeight: 200,
-	 
-     });
-      });
 </script-->	
 <script>
 //fungsi chart 

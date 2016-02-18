@@ -30,9 +30,8 @@ include ("../libs/alerts.php");
 	<form id="form_input" method="POST">	
 
 <?php 
-$query = "SELECT max(kode) as maxID FROM paket_pemeriksaan ";
-$hasil = mysql_query($query);
-$data  = mysql_fetch_array($hasil);
+$query = mysql_query("SELECT max(kode) as maxID FROM paket_pemeriksaan ");
+$data  = mysql_fetch_assoc($query);
 $idMax = $data['maxID'];
 $noUrut =substr($idMax, 6,3);
 
@@ -50,7 +49,6 @@ else
 {
 $newID = $char . sprintf("%03s", $noUrut);
 } 
-//echo $newID;
 
 if(isset($_POST['tambah']))
 {
@@ -108,8 +106,6 @@ $indeks++;
 		<label class="control-label" for="pilih">Parameter Uji</label><br>
         <select name="parameter_ujis[]" data-placeholder="Pilih Parameter Uji" style="width:70%;" class="form-control chosen-select " multiple tabindex="3" required>
 <?php
-include ('libs/koneksi.php');
-
 		  $s=mysql_query("select kode,nama from kelompok_parameter_uji");
 			while ($d=mysql_fetch_array($s)) {
 			$t=$d['nama'];
