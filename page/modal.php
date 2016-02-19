@@ -289,7 +289,7 @@
 
   </div>
 </div>
-<!--Modal Edit paket_pemeriksaan-->
+<!--Modal Edit paket_pemeriksaan (belum selesai)-->
 <div id="modal_edit_paket_pemeriksaan" class="modal fade" role="dialog">
 	<div class="modal-dialog ">
 	
@@ -363,6 +363,326 @@
 			<div class="form-group">
 			<br>
 			<label class="control-label" for="nama">Hapus Data <a id="hapus_id2"></a> ?</label>
+			<input type="hidden" class="form-control" name="id">
+			<input type="hidden" class="form-control" name="kode">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Hapus" name="hapus" class="btn btn-danger">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal Tambah pekerjaan-->
+<div id="modal_add_pekerjaan" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Tambah Pekerjaan</h4>
+      </div>
+			<form id="form_input" method="POST">
+      <div class="modal-body"> 
+			<div class="form-group">
+			<label class="control-label" for="nama_pekerjaan">Nama Pekerjaan</label>
+			<input type="text" class="form-control" name="nama_pekerjaan" id="nama_pekerjaan" style="text-transform:uppercase" required>
+			</div>		
+      </div>
+      <div class="modal-footer">
+		<input type="submit" value="Tambah" name="tambah" class="btn btn-primary">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	  </form>
+    </div>
+
+  </div>
+</div>
+<!--Modal Edit pekerjaan-->
+<div id="modal_edit_pekerjaan" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+	
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Edit Pekerjaan</h4>
+		</div>
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<label class="control-label" for="nama_pekerjaan">Nama Pekerjaan</label>
+			<input type="text" class="form-control" name="nama_pekerjaan" id="nama_pekerjaan" style="text-transform:uppercase" required>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Update" name="update" class="btn btn-primary">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal Hapus pekerjaan-->
+<div id="modal_delete_pekerjaan" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<br>
+			<label class="control-label" for="nama">Hapus Data <a id="hapus_id3"></a> ?</label>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Hapus" name="hapus" class="btn btn-danger">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal add jenis_pasien-->
+<div id="modal_add_jenis_pasien" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Tambah Jenis Pasien</h4>
+      </div>
+			<form id="form_input" method="POST">
+      <div class="modal-body"> 
+			<div class="form-group">
+			<label class="control-label" for="jenis">Jenis Pasien</label>
+			<input type="text" class="form-control" name="jenis" id="jenis" style="text-transform:uppercase" required>
+			</div>	
+      </div>
+      <div class="modal-footer">
+		<input type="submit" value="Tambah" name="tambah" class="btn btn-primary">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	  </form>
+    </div>
+
+  </div>
+</div>
+<!--Modal edit jenis_pasien-->
+<div id="modal_edit_jenis_pasien" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+	
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Edit Pekerjaan</h4>
+		</div>
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<label class="control-label" for="jenis">Jenis Pasien</label>
+			<input type="text" class="form-control" name="jenis" id="jenis" style="text-transform:uppercase" required>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Update" name="update" class="btn btn-primary">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal hapus jenis_pasien-->
+<div id="modal_delete_jenis_pasien" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<br>
+			<label class="control-label" for="nama">Hapus Data <a id="hapus_id4"></a> ?</label>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Hapus" name="hapus" class="btn btn-danger">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal add petugas-->
+<div id="modal_add_petugas" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Tambah Petugas</h4>
+      </div>
+			<form id="form_input" method="POST">
+      <div class="modal-body"> 
+			<div class="form-group">
+			<label class="control-label" for="nama_petugas">Nama Petugas</label>
+			<input type="text" class="form-control" name="nama_petugas" id="nama_petugas" style="text-transform:uppercase" required>
+			</div>	
+      </div>
+      <div class="modal-footer">
+		<input type="submit" value="Tambah" name="tambah" class="btn btn-primary">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	  </form>
+    </div>
+
+  </div>
+</div>
+<!--Modal edit petugas-->
+<div id="modal_edit_petugas" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+	
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Edit Petugas</h4>
+		</div>
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<label class="control-label" for="nama_petugas">Nama Petugas</label>
+			<input type="text" class="form-control" name="nama_petugas" id="nama_petugas" style="text-transform:uppercase" required>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Update" name="update" class="btn btn-primary">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal hapus petugas-->
+<div id="modal_delete_petugas" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<br>
+			<label class="control-label" for="nama">Hapus Data <a id="hapus_id5"></a> ?</label>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Hapus" name="hapus" class="btn btn-danger">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+
+
+<!--Modal edit pasien-->
+<div id="modal_edit_pasien" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+	
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Edit Pasien</h4>
+		</div>
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<label class="control-label" for="id_pasien">ID Pasien</label>
+			<input type="text" class="form-control" name="id_pasien" id="id_pasien"  tabindex="" readonly="readonly">
+			<input type="hidden" class="form-control" name="id">
+			</div>
+
+			<div class="form-group">
+			<label class="control-label" for="nama_pasien">Nama Pasien</label>
+			<input type="text" class="form-control" name="nama_pasien" id="nama_pasien"  tabindex="1" required>
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="alamat">Alamat Pasien</label>
+			<input type="text" class="form-control" name="alamat" id="alamat"  tabindex="1" required>
+			</div>
+
+			<div class="form-group">
+			<label class="control-label" for="tempat_lahir">Tempat Lahir</label>
+			<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" tabindex="1" required>
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="tanggal_lahir">Tanggal Lahir</label>
+			<div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="btn2" data-link-format="dd-mm-yyyy">
+            <input class="form-control" size="10" type="text" name="tanggal_lahir" tabindex="1"  required>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="pekerjaan">Pekerjaan </label>
+			<!--input type="text" class="form-control" name="pekerjaan" id="pekerjaan"-->
+			<select name="pekerjaan" class="form-control"  tabindex="1" required >
+			<option><?php echo "sad";//$data['pekerjaan']; ?></option>
+				<?php
+				$sql1=mysql_query("select kode,nama_pekerjaan from pekerjaan ");
+				while($data1=mysql_fetch_array($sql1, MYSQL_BOTH )){
+				echo "<option value=$data1[kode]>";
+				echo "".$data1['nama_pekerjaan']."";
+				} 	 
+				?>
+			</select>   
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="no_telp">No Telephone</label>
+			<input type="number" class="form-control" name="no_telp" id="no_telp"  tabindex="1" maxlength="12" style="width:30%;" required>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Update" name="update" class="btn btn-primary">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal hapus pasien-->
+<div id="modal_delete_pasien" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<br>
+			<label class="control-label" for="nama">Hapus Data <a id="hapus_id6"></a> ?</label>
 			<input type="hidden" class="form-control" name="id">
 			</div>
 		</div>

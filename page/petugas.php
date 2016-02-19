@@ -1,21 +1,34 @@
-<html>
-    <head>
-        <title>judul</title>
-        <!--link rel="stylesheet" href="../libs/bootstrap.min.css"-->	
-        <!--link rel="stylesheet" href="../libs/dataTables.bootstrap.css"-->
-    </head>
 <?php 
-include ('../libs/koneksi.php');
-
 					
-	$sql="select id,nama from petugas";
-	$query=mysql_query($sql); ?>    
+$sql="select id,nama from petugas";
+$query=mysql_query($sql); 
+
+if(isset($_POST['tambah']))
+{
+	$code=substr($_POST['nama_petugas'],0,3);
+	mysql_query("insert into petugas (nama,kode) values (upper('".$_POST['nama_petugas']."'),upper('".$code."'))");
+	echo "<script language=javascript>parent.location.href='home.php?ref=petugas';</script>";
+	writeMsg('save.sukses');
+}
+elseif(isset($_POST['update']))
+{
+	$code=substr($_POST['nama_petugas'],0,3);
+	mysql_query("UPDATE petugas SET  nama = upper('".$_POST['nama_petugas']."'),kode = upper('".$code."') WHERE id = '".$_POST['id']."'");
+	echo "<script language=javascript>parent.location.href='home.php?ref=petugas';</script>";
+	writeMsg('update.sukses');
+}
+elseif(isset($_POST['hapus']))
+{
+	mysql_query("DELETE FROM petugas WHERE ID = '".$_POST['id']."'");
+	echo "<script language=javascript>parent.location.href='home.php?ref=petugas';</script>";
+}	
+?>     
     
     <body>
         <div class="container">
             <h3 class="text-center">Data Petugas</h3><br>
-			<a href="home.php?ref=add_petugas" class="btn btn-default btn-sm btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Add New</a>
-<br><br><br>
+			<button type="button" class="btn btn-default btn-sm btn-success" style="float:right;" data-toggle="modal" data-target="#modal_add_petugas"><span class="glyphicon glyphicon-plus"></span> Add New </button>
+<br><br>
 
             <div class="">
                 <table id="example1" class="table table-bordered table-striped">
@@ -23,24 +36,23 @@ include ('../libs/koneksi.php');
                      <tr>
                      		<th width="10">No</th>
                             <th>Petugas</th>
-							<th width="100">Action</th>
+							<th width="50">Action</th>
                     </tr>
                     </thead>
                     <tbody>
  
 <?php $no=1;	while ($data=mysql_fetch_array($query)) {			
-
-$nama = $data['nama'];
+$id = $data['id'];
+$nama_petugas = $data['nama'];
 
    ?>               
                     
                         <tr>
                         	<td><?php echo $no ?></td>
-                            <td><?php echo $nama ?></td>
+                            <td><?php echo $nama_petugas ?></td>
 							<td align="center">
-									<a name="update" href="home.php?ref=edit_petugas&id=<?php echo $data['id']; ?>" class="btn btn-default btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> 
-									
-									<a name="delete" href="home.php?ref=del_petugas&id=<?php echo $data['id']; ?>" onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?')) return false;"class="btn btn-default btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+									<button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_petugas" data-id="<?php echo $id ?>" data-nama_petugas="<?php echo $nama_petugas ?>"><span class="glyphicon glyphicon-pencil"></span></button>
+									<button type="button" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_petugas" data-id="<?php echo $id ?>" data-nama_petugas="<?php echo $nama_petugas ?>"><span class="glyphicon glyphicon-remove"></span></button>
 							</td>
                         </tr>
 	<?php $no++; } ?>                                                
@@ -48,16 +60,7 @@ $nama = $data['nama'];
                     <tfoot>
                     </tfoot>
                 </table>
-            </div><!-- /.box-body -->
+            </div>
         </div>	
-        <!--script src="table/jquery-1.11.1.min.js"></script-->
-        <!--script src="table/bootstrap.min.js"></script-->
-        <!--script src="table/jquery.dataTables.min.js"></script-->
-        <!--script src="table/dataTables.bootstrap.js"></script-->	
-        <!--script type="text/javascript">
-            $(function() {
-                $('#example1').dataTable();
-            });
-        </script-->
     </body>
 </html>

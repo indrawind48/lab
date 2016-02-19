@@ -47,8 +47,8 @@ if(isset($_POST['update']))
 	</div>
 
 	<div class="form-group">
-  		<label class="control-label" for="nama">Nama Pasien</label>
-  		<input type="text" class="form-control" name="nama" id="nama" value="<?php echo $data['nama']; ?>" tabindex="1" required>
+  		<label class="control-label" for="nama_pasien">Nama Pasien</label>
+  		<input type="text" class="form-control" name="nama_pasien" id="nama_pasien" value="<?php echo $data['nama']; ?>" tabindex="1" required>
 	</div>
 	<div class="form-group">
   		<label class="control-label" for="alamat">Alamat Pasien</label>

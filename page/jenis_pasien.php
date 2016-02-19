@@ -1,35 +1,47 @@
-<html>
-    <head>
-        <title>judul</title>
-        <!--link rel="stylesheet" href="../libs/bootstrap.min.css"-->	
-        <!--link rel="stylesheet" href="../libs/dataTables.bootstrap.css"-->
-    </head>
 <?php 
-include ('../libs/koneksi.php');
+				
+$sql="select id,jenis from jenis_pasien";
+$query=mysql_query($sql); 
 
-					
-	$sql="select id,jenis from jenis_pasien";
-	$query=mysql_query($sql); ?>    
+if(isset($_POST['tambah']))
+{
+	$kode=substr($_POST['jenis'],0,3);
+	mysql_query("insert into jenis_pasien (jenis,kode) values (upper('".$_POST['jenis']."'),upper('".$kode."'))");
+	echo "<script language=javascript>parent.location.href='home.php?ref=jenis_pasien';</script>";
+	writeMsg('save.sukses');
+}
+elseif(isset($_POST['update']))
+{
+	$code=substr($_POST['jenis'],0,3);
+	mysql_query("UPDATE jenis_pasien SET  jenis = upper('".$_POST['jenis']."'), kode = upper('".$code."') WHERE id = '".$_POST['id']."'");
+	echo "<script language=javascript>parent.location.href='home.php?ref=jenis_pasien';</script>";
+	writeMsg('update.sukses');
+}
+elseif(isset($_POST['hapus']))
+{
+	mysql_query("DELETE FROM jenis_pasien WHERE ID = '".$_POST['id']."'");
+echo "<script language=javascript>parent.location.href='home.php?ref=jenis_pasien';</script>";
+}	
+?>    
     
     <body>
         <div class="container">
             <h3 class="text-center">Data Jenis Pasien</h3><br>
-			<a href="home.php?ref=add_jenis_pasien" class="btn btn-default btn-sm btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Add New</a>
-<br><br><br>
-
-            <div class="">
+			<button type="button" class="btn btn-default btn-sm btn-success" style="float:right;" data-toggle="modal" data-target="#modal_add_jenis_pasien"><span class="glyphicon glyphicon-plus"></span> Add New </button>
+<br><br>
+       <div class="">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                      <tr>
                      		<th width='10'>No</th>
                             <th>Jenis Pasien</th>
-							<th width="100">Action</th>
+							<th width="50">Action</th>
                     </tr>
                     </thead>
                     <tbody>
  
 <?php $no=1;	while ($data=mysql_fetch_array($query)) {			
-
+$id = $data['id'];
 $jenis = $data['jenis'];
 
    ?>               
@@ -38,9 +50,8 @@ $jenis = $data['jenis'];
                         	<td><?php echo $no ?></td>
                             <td><?php echo $jenis?></td>
 							<td align="center">
-									<a name="update" href="home.php?ref=edit_jenis_pasien&id=<?php echo $data['id']; ?>" class="btn btn-default btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> 
-									
-									<a name="delete" href="home.php?ref=del_jenis_pasien&id=<?php echo $data['id']; ?>" onclick ="if (!confirm('Apakah Anda yakin akan menghapus data ini?')) return false;"class="btn btn-default btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+									<button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_jenis_pasien" data-id="<?php echo $id ?>" data-jenis="<?php echo $jenis ?>"><span class="glyphicon glyphicon-pencil"></span></button>
+									<button type="button" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_jenis_pasien" data-id="<?php echo $id ?>" data-jenis="<?php echo $jenis ?>"><span class="glyphicon glyphicon-remove"></span></button>
 							</td>
                         </tr>
 	<?php $no++; } ?>                                                
@@ -48,16 +59,7 @@ $jenis = $data['jenis'];
                     <tfoot>
                     </tfoot>
                 </table>
-            </div><!-- /.box-body -->
+            </div>
         </div>	
-        <!--script src="table/jquery-1.11.1.min.js"></script-->
-        <!--script src="table/bootstrap.min.js"></script-->
-        <!--script src="table/jquery.dataTables.min.js"></script-->
-        <!--script src="table/dataTables.bootstrap.js"></script-->	
-        <!--script type="text/javascript">
-            $(function() {
-                $('#example1').dataTable();
-            });
-        </script-->
     </body>
 </html>

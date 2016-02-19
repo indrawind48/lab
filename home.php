@@ -149,8 +149,74 @@ $pars('#modal_edit_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
 $pars('#modal_delete_paket_pemeriksaan').on('show.bs.modal', function(parsh) {
     var nama_paket = $pars(parsh.relatedTarget).data('nama_paket');
 	var id = $pars(parsh.relatedTarget).data('id');
+	var kode = $pars(parsh.relatedTarget).data('kode');
     $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="kode"]').val(kode);
 	document.getElementById("hapus_id2").innerHTML = nama_paket;
+});
+
+$pars('#modal_edit_pekerjaan').on('show.bs.modal', function(parsh) {
+    var nama_pekerjaan = $pars(parsh.relatedTarget).data('nama_pekerjaan');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="nama_pekerjaan"]').val(nama_pekerjaan);
+});
+$pars('#modal_delete_pekerjaan').on('show.bs.modal', function(parsh) {
+    var nama_pekerjaan = $pars(parsh.relatedTarget).data('nama_pekerjaan');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id3").innerHTML = nama_pekerjaan;
+});
+
+$pars('#modal_edit_jenis_pasien').on('show.bs.modal', function(parsh) {
+    var jenis = $pars(parsh.relatedTarget).data('jenis');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="jenis"]').val(jenis);
+});
+$pars('#modal_delete_jenis_pasien').on('show.bs.modal', function(parsh) {
+    var jenis = $pars(parsh.relatedTarget).data('jenis');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id4").innerHTML = jenis;
+});
+
+$pars('#modal_edit_petugas').on('show.bs.modal', function(parsh) {
+    var nama_petugas = $pars(parsh.relatedTarget).data('nama_petugas');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="nama_petugas"]').val(nama_petugas);
+});
+$pars('#modal_delete_petugas').on('show.bs.modal', function(parsh) {
+    var nama_petugas = $pars(parsh.relatedTarget).data('nama_petugas');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id5").innerHTML = nama_petugas;
+});
+
+$pars('#modal_edit_pasien').on('show.bs.modal', function(parsh) {
+	var id_pasien = $pars(parsh.relatedTarget).data('id_pasien');
+    var nama_pasien = $pars(parsh.relatedTarget).data('nama_pasien');
+	var alamat = $pars(parsh.relatedTarget).data('alamat');
+	var tempat_lahir = $pars(parsh.relatedTarget).data('tempat_lahir');
+	var tanggal_lahir = $pars(parsh.relatedTarget).data('tanggal_lahir');
+	var pekerjaan = $pars(parsh.relatedTarget).data('pekerjaan');
+	var no_telp = $pars(parsh.relatedTarget).data('no_telp');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="id_pasien"]').val(id_pasien);
+	$pars(parsh.currentTarget).find('input[name="nama_pasien"]').val(nama_pasien);
+	$pars(parsh.currentTarget).find('input[name="alamat"]').val(alamat);
+	$pars(parsh.currentTarget).find('input[name="tempat_lahir"]').val(tempat_lahir);
+	$pars(parsh.currentTarget).find('input[name="tanggal_lahir"]').val(tanggal_lahir);
+	$pars(parsh.currentTarget).find('input[name="pekerjaan"]').val(pekerjaan);
+	$pars(parsh.currentTarget).find('input[name="no_telp"]').val(no_telp);
+});
+$pars('#modal_delete_pasien').on('show.bs.modal', function(parsh) {
+    var nama_pasien = $pars(parsh.relatedTarget).data('nama_pasien');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	document.getElementById("hapus_id6").innerHTML = nama_pasien;
 });
 </script>	
 <script>
