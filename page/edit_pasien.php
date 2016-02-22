@@ -31,7 +31,7 @@ include ("../libs/alerts.php");
 <?php  
 if(isset($_POST['update']))
 {
-	mysql_query("UPDATE pasien SET id_pasien = '".$_POST['id_pasien']."',nama = '".$_POST['nama']."',alamat = '".$_POST['alamat']."', tempat_lahir = '".$_POST['tempat_lahir']."',tanggal_lahir = '".$_POST['tanggal_lahir']."', pekerjaan = '".$_POST['pekerjaan']."', no_telp = '".$_POST['no_telp']."' WHERE id = '".$_GET['id']."'");
+	mysql_query("UPDATE pasien SET id_pasien = '".$_POST['id_pasien']."',nama = '".$_POST['nama_pasien']."',alamat = '".$_POST['alamat']."', tempat_lahir = '".$_POST['tempat_lahir']."',tanggal_lahir = '".$_POST['tanggal_lahir']."', pekerjaan = '".$_POST['pekerjaan']."', no_telp = '".$_POST['no_telp']."' WHERE id = '".$_GET['id']."'");
 	echo "<script language=javascript>parent.location.href='home.php?ref=pasien';</script>";
 	writeMsg('update.sukses');
 

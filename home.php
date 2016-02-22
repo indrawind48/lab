@@ -132,10 +132,12 @@ $pars('#modal_delete_parameter_uji').on('show.bs.modal', function(parsh) {
 });
 //pake shown bukan show
 $pars('#modal_add_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
-	 $pars('.chosen-select', this).chosen();
+	 //$pars('.chosen-select', this).chosen();
+	$pars('.chosen-select', this).chosen('destroy').chosen();
 });
 $pars('#modal_edit_paket_pemeriksaan').on('shown.bs.modal', function(parsh) {
-	$pars('.chosen-select', this).chosen();
+	//$pars('.chosen-select', this).chosen();
+	$pars('.chosen-select', this).chosen('destroy').chosen();
 	var id = $pars(parsh.relatedTarget).data('id');
 	var kode = $pars(parsh.relatedTarget).data('kode');
 	var nama_paket = $pars(parsh.relatedTarget).data('nama_paket');
@@ -217,6 +219,24 @@ $pars('#modal_delete_pasien').on('show.bs.modal', function(parsh) {
 	var id = $pars(parsh.relatedTarget).data('id');
     $pars(parsh.currentTarget).find('input[name="id"]').val(id);
 	document.getElementById("hapus_id6").innerHTML = nama_pasien;
+});
+
+$pars('#modal_edit_reagen').on('show.bs.modal', function(parsh) {
+    var nama_reagen = $pars(parsh.relatedTarget).data('nama_reagen');
+	var bentuk = $pars(parsh.relatedTarget).data('bentuk');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="nama_reagen"]').val(nama_reagen);
+	$pars(parsh.currentTarget).find('input[name="bentuk"]').val(bentuk);
+});
+$pars('#modal_delete_reagen').on('show.bs.modal', function(parsh) {
+    var nama_reagen = $pars(parsh.relatedTarget).data('nama_reagen');
+	var bentuk = $pars(parsh.relatedTarget).data('bentuk');
+	var kode = $pars(parsh.relatedTarget).data('kode');
+	var id = $pars(parsh.relatedTarget).data('id');
+    $pars(parsh.currentTarget).find('input[name="id"]').val(id);
+	$pars(parsh.currentTarget).find('input[name="kode"]').val(kode);
+	document.getElementById("hapus_id7").innerHTML = nama_reagen;
 });
 </script>	
 <script>
@@ -454,7 +474,7 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
 });
 
 </script>	
-<!--script>
+<script>
 	//fungsi panggil cari paramater uji
 	var $ee = jQuery.noConflict();
     var config = {
@@ -467,7 +487,7 @@ $show("#isi1,#isi2,#isi3,#isi4,#isi5,#isi6,#isi7,#isi8,#isi9,#isi_a1,#isi_a2,#is
     for (var selector in config) {
       $ee(selector).chosen(config[selector]);
     }
-</script-->	
+</script>	
 <script>
 //fungsi chart 
 	var $nocon = jQuery.noConflict();

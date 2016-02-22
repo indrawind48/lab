@@ -71,8 +71,8 @@ $no_telp = $data['no_telp'];
                             <td><?php echo $no_telp ?></td>
 							<td align="center">
 									<a name="update" href="home.php?ref=add_pemeriksaan&id=<?php echo $data['id']."&kode=".$data['kode']; ?>" class="btn btn-default btn-sm btn-warning"><span class="glyphicon glyphicon-search"></span></a> 
-							
-									<button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_pasien" data-id="<?php echo $id ?>" data-id_pasien="<?php echo $id_pasien ?>" data-nama_pasien="<?php echo $nama_pasien ?>" data-alamat="<?php echo $alamat ?>" data-tempat_lahir="<?php echo $tempat_lahir ?>" data-tanggal_lahir="<?php echo $tanggal_lahir ?>" data-pekerjaan="<?php echo $pekerjaan ?>" data-no_telp="<?php echo $no_telp ?>"><span class="glyphicon glyphicon-pencil"></span></button>
+									<a name="update" href="home.php?ref=edit_pasien&id=<?php echo $data['id']."&kode=".$data['kode']; ?>" class="btn btn-default btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> 
+									<!--button type="button" class="btn btn-default btn-sm btn-primary" data-toggle="modal" data-target="#modal_edit_pasien" data-id="<?php echo $id ?>" data-id_pasien="<?php echo $id_pasien ?>" data-nama_pasien="<?php echo $nama_pasien ?>" data-alamat="<?php echo $alamat ?>" data-tempat_lahir="<?php echo $tempat_lahir ?>" data-tanggal_lahir="<?php echo $tanggal_lahir ?>" data-pekerjaan="<?php echo $pekerjaan ?>" data-no_telp="<?php echo $no_telp ?>"><span class="glyphicon glyphicon-pencil"></span></button-->
 									<button type="button" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#modal_delete_pasien" data-id="<?php echo $id ?>" data-nama_pasien="<?php echo $nama_pasien ?>"><span class="glyphicon glyphicon-remove"></span></button>
 							</td>
                         </tr>

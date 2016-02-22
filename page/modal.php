@@ -303,15 +303,15 @@
 		<div class="modal-body">
 			<div class="form-group">
 			<label class="control-label" for="kode">Kode Paket</label>
-			<input type="text" class="form-control" name="kode" id="kode" value="<?php echo $data['kode']; ?>" style="width:35%; text-transform:uppercase;" readonly="readonly">
+			<input type="text" class="form-control" name="kode" id="kode"  style="width:35%; text-transform:uppercase;" readonly="readonly">
 			</div>
 			<div class="form-group">
 			<label class="control-label" for="nama">Nama Paket</label>
-			<input type="text" class="form-control" name="nama_paket" id="nama_paket" value="<?php echo $data['nama_paket']; ?>" tabindex="1" style="text-transform:uppercase" required >
+			<input type="text" class="form-control" name="nama_paket" id="nama_paket"  tabindex="1" style="text-transform:uppercase" required >
 			</div>
 			<div class="form-group">
 			<label class="control-label" for="biaya">Biaya Paket</label>
-			<input type="number" class="form-control" name="biaya" id="biaya" value="<?php echo $data['biaya']; ?>" tabindex="1" style="text-transform:uppercase;width:35%;" required >
+			<input type="number" class="form-control" name="biaya" id="biaya"  style="text-transform:uppercase;width:35%;" required >
 			</div>
 			<div class="form-group" >
 			<label class="control-label" for="pilih">Parameter Uji</label><br>
@@ -606,7 +606,7 @@
 </div>
 
 
-<!--Modal edit pasien-->
+<!--Modal edit pasien (belum selesai)-->
 <div id="modal_edit_pasien" class="modal fade" role="dialog">
 	<div class="modal-dialog ">
 	
@@ -648,7 +648,7 @@
 			<label class="control-label" for="pekerjaan">Pekerjaan </label>
 			<!--input type="text" class="form-control" name="pekerjaan" id="pekerjaan"-->
 			<select name="pekerjaan" class="form-control"  tabindex="1" required >
-			<option><?php echo "sad";//$data['pekerjaan']; ?></option>
+			<option><?php// echo "sad";//$data['pekerjaan']; ?></option>
 				<?php
 				$sql1=mysql_query("select kode,nama_pekerjaan from pekerjaan ");
 				while($data1=mysql_fetch_array($sql1, MYSQL_BOTH )){
@@ -684,6 +684,92 @@
 			<br>
 			<label class="control-label" for="nama">Hapus Data <a id="hapus_id6"></a> ?</label>
 			<input type="hidden" class="form-control" name="id">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Hapus" name="hapus" class="btn btn-danger">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+
+<!--Modal add reagen-->
+<div id="modal_add_reagen" class="modal fade" role="dialog">
+  <div class="modal-dialog ">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Tambah Reagen</h4>
+      </div>
+			<form id="form_input" method="POST">
+      <div class="modal-body"> 
+			<div class="form-group">
+			<label class="control-label" for="nama_reagen">Nama Reagen</label>
+			<input type="text" class="form-control" name="nama_reagen" id="nama_reagen"  required>
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="nama">Bentuk</label>
+			<input type="text" class="form-control" name="bentuk" id="bentuk" style="text-transform:uppercase" required>
+			</div>	
+      </div>
+      <div class="modal-footer">
+		<input type="submit" value="Tambah" name="tambah" class="btn btn-primary">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	  </form>
+    </div>
+
+  </div>
+</div>
+<!--Modal edit reagen-->
+<div id="modal_edit_reagen" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+	
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Edit Petugas</h4>
+		</div>
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<label class="control-label" for="nama_reagen">Nama Reagen</label>
+			<input type="text" class="form-control" name="nama_reagen" id="nama_reagen"  required>
+			<input type="hidden" class="form-control" name="id">
+			</div>
+			<div class="form-group">
+			<label class="control-label" for="nama">Bentuk</label>
+			<input type="text" class="form-control" name="bentuk" id="bentuk" style="text-transform:uppercase" required>
+			</div>	
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Update" name="update" class="btn btn-primary">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+			</form>
+	</div>
+
+	</div>
+</div>
+<!--Modal hapus reagen-->
+<div id="modal_delete_reagen" class="modal fade" role="dialog">
+	<div class="modal-dialog ">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+			<form id="form_input" method="POST">
+		<div class="modal-body">
+			<div class="form-group">
+			<br>
+			<label class="control-label" for="nama">Hapus Data <a id="hapus_id7"></a> ?</label>
+			<input type="hidden" class="form-control" name="id">
+			<input type="hidden" class="form-control" name="kode">
 			</div>
 		</div>
 		<div class="modal-footer">
